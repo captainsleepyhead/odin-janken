@@ -15,17 +15,10 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
-let display = document.querySelector(".display");
-display.style.marginTop = "-25px";
-
 function playRound( humanChoice, computerChoice ) {
-    let display = document.querySelector(".display");
-    display.style.marginTop = "-25px";
+    let display = document.querySelector(".display>p");
 
     if(humanScore == 5 || computerScore == 5){
-        while(display.firstChild){
-            display.removeChild(display.lastChild);
-        }
         humanScore = 0;
         computerScore = 0;
     }
@@ -33,15 +26,15 @@ function playRound( humanChoice, computerChoice ) {
     if( (humanChoice == 'rock' && computerChoice == 'rock')
         || (humanChoice == 'paper' && computerChoice == 'paper')
         || (humanChoice == "scissors" && computerChoice == 'scissors') ) {
-        display.innerHTML += `<br /><br />Draw! ${humanChoice} draws with ${computerChoice}`;
+        display.textContent = `Draw! ${humanChoice} draws with ${computerChoice}`;
         return 0; // 0 for draw
     }else if ( (humanChoice == 'rock' && computerChoice == 'scissors')
                 || (humanChoice == 'scissors' && computerChoice == 'paper')
                 || (humanChoice == 'paper' && computerChoice == 'rock') ){
-        display.innerHTML += `<br /><br />You win! ${humanChoice} beats ${computerChoice}`;
+        display.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
         return -1; // -1 for human point
     }else {
-        display.innerHTML += `<br /><br />You lose! ${computerChoice} beats ${humanChoice}`;
+        display.textContent = `You lose! ${computerChoice} beats ${humanChoice}`;
         return 1; // 1 for computer point
     }
 }
@@ -51,7 +44,7 @@ let selection = document.querySelector(".selection");
 selection.addEventListener('click', (e) => {
 
     let result = 0;
-    let display = document.querySelector(".display");
+    let display = document.querySelector(".display>p");
     
     switch(e.target.id){
         case 'paper':
